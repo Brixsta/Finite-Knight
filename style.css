@@ -1,0 +1,227 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Playfair Display SC", serif;
+  color: white;
+}
+
+.wrapper {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  flex-direction: column;
+}
+
+.console {
+  width: 480px;
+  height: 120px;
+  background-image: url("./images/console-background.png");
+  background-size: cover;
+  z-index: 10;
+  position: relative;
+  display: flex;
+  border: solid 1px black;
+  border-bottom: none;
+}
+
+.splash-container {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  margin-top: -100px;
+}
+
+.splash-container h1 {
+  font-size: 80px;
+  color: black;
+}
+
+.splash-container img {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: solid 5px black;
+}
+
+.console:before {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+}
+
+.health-container,
+.keys-container,
+.portrait-container,
+.level-container {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+}
+
+.health-container,
+.keys-container,
+.level-container span {
+  margin-top: 5px;
+  font-size: 20px;
+  text-shadow: 0px 0px 5px black, 0px 0px 10px black, 0px 0px 5px black;
+}
+
+.keys-container img {
+  opacity: 0.4;
+}
+
+.keys-container span {
+  margin-bottom: 5px;
+}
+
+.portrait-container {
+  justify-content: center;
+}
+
+.level-container span:nth-child(2) {
+  font-size: 60px;
+  margin-top: -10px;
+  text-shadow: 0px 0px 5px black, 0px 0px 10px black, 0px 0px 5px black;
+}
+
+.health-orb {
+  height: 55%;
+  width: 55%;
+  background-color: black;
+  border-radius: 50%;
+  overflow: hidden;
+  transform: scaleY(-1);
+  border: solid 2px black;
+  margin-top: 7px;
+  position: relative;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.8);
+}
+
+.health-orb:after {
+  content: "";
+  position: absolute;
+  height: 50%;
+  width: 50%;
+  background-color: white;
+  left: 38%;
+  top: 43%;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.health-blood {
+  height: 100%;
+  width: 100%;
+  background-color: rgb(169, 0, 0);
+  position: relative;
+}
+
+.portrait-box {
+  height: 80%;
+  width: 80%;
+  background-size: cover;
+  border: solid 1px black;
+  filter: brightness(1.01);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.8);
+  position: relative;
+}
+
+.red-box {
+  height: 74px;
+  width: 74px;
+  background-color: red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.1;
+}
+
+.knight-portrait {
+  height: 75%;
+  width: 75%;
+  border: solid 1px black;
+}
+
+canvas {
+  border: solid 1px black;
+}
+
+.modal-container {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  z-index: 100;
+  opacity: 0.7;
+}
+
+.modal-text {
+  color: white;
+  position: absolute;
+  font-size: 60px;
+  transform: translate(-50%, -50%);
+  left: 50%;
+  top: 50%;
+  z-index: 200;
+  margin-top: -50px;
+}
+
+.replay-button {
+  position: absolute;
+  z-index: 200;
+  transform: translate(-50%, -50%);
+  margin-top: 60px;
+  color: white;
+  background-color: black;
+  border: solid 5px white;
+  padding: 20px;
+  font-size: 30px;
+  left: 50%;
+  top: 50%;
+  transition: all 500ms ease-in-out;
+}
+
+.start-game-button {
+  border: solid 5px black;
+  background-color: white;
+  color: black;
+  padding: 15px;
+  font-size: 20px;
+  transition: all 500ms ease-in-out;
+  margin-top: 10px;
+}
+
+.replay-button:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}
+
+.start-game-button:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+}

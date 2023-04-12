@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Finite Knight</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" href="./images/favicon.png" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="splash-container">
+        <h1>Finite Knight</h1>
+        <img src="./images/knight-portrait.png" />
+        <button class="start-game-button">Start Game</button>
+      </div>
+      <div class="console">
+        <div class="portrait-container">
+          <div class="portrait-box">
+            <img src="./images/knight-portrait.png" class="knight-portrait" />
+          </div>
+        </div>
+        <div class="health-container">
+          <span>Health</span>
+          <div class="health-orb">
+            <div class="health-blood"></div>
+          </div>
+        </div>
+        <div class="keys-container">
+          <span>Keys</span>
+          <img
+            src="images/key.png"
+            height="25px"
+            width="25px"
+            class="console-key"
+          />
+          <img
+            src="images/key.png"
+            height="25px"
+            width="25px"
+            class="console-key"
+          />
+          <img
+            src="images/key.png"
+            height="25px"
+            width="25px"
+            class="console-key"
+          />
+        </div>
+        <div class="level-container">
+          <span>Level</span>
+          <span>1</span>
+        </div>
+      </div>
+      <canvas height="480px" width="480px" id="game"></canvas>
+    </div>
+    <script type="module" src="index.js"></script>
+  </body>
+</html>
