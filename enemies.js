@@ -98,7 +98,7 @@ export class Goblin {
     if (
       inRange &&
       index.player.sy === 96 &&
-      index.player.sx === 160 &&
+      index.player.sx >= 130 &&
       !this.takingDamage &&
       (index.player.attacking || index.keys.Space)
     ) {
