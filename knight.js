@@ -1,7 +1,6 @@
 import * as index from "./index.js";
 import * as helper from "./helper.js";
 
-
 export class Knight {
   constructor(x, y) {
     this.width = index.global.cellSize;
@@ -13,6 +12,7 @@ export class Knight {
     this.image.src = this.src;
     this.moving = false;
     this.attacking = false;
+    this.beginAttack = false;
     this.attackSound = new Audio("");
     this.sx = 0;
     this.sy = 0;
@@ -114,34 +114,34 @@ export class Knight {
     }
   }
 
-  playAttackSound() {
-    // play sound during each attack animation
-    if (
-      (this.sx >= 128 && this.attacking) ||
-      (this.sx >= 128 && index.keys.Space)
-    ) {
-      if (this.attackSound.paused) {
-        const audio = this.attackSound;
-        const sounds = [
-          "./audio/sword-1.wav",
-          "./audio/sword-2.wav",
-          "./audio/sword-3.wav",
-        ];
-        const randomNum = Math.floor(Math.random() * sounds.length);
-        audio.src = sounds[randomNum];
-        audio.volume = 0.2;
-        audio.play();
-      }
-    }
-  }
+  // playAttackSound() {
+  //   // play sound during each attack animation
+  //   if (
+  //     (this.sx >= 128 && this.attacking) ||
+  //     (this.sx >= 128 && index.keys.Space)
+  //   ) {
+  //     if (this.attackSound.paused) {
+  //       const audio = this.attackSound;
+  //       const sounds = [
+  //         "./audio/sword-1.wav",
+  //         "./audio/sword-2.wav",
+  //         "./audio/sword-3.wav",
+  //       ];
+  //       const randomNum = Math.floor(Math.random() * sounds.length);
+  //       audio.src = sounds[randomNum];
+  //       audio.volume = 0.2;
+  //       audio.play();
+  //     }
+  //   }
+  // }
 
-  endAttackAnimation() {
-    // stop attack animation when sprite sheet reaches end
-    if ((this.sx >= 160 && this.attacking) || (this.sx >= 160 && this.moving)) {
-      this.attacking = false;
-      this.attackSound.pause;
-    }
-  }
+  // endAttackAnimation() {
+  //   // stop attack animation when sprite sheet reaches end
+  //   if ((this.sx >= 160 && this.attacking) || (this.sx >= 160 && this.moving)) {
+  //     this.attacking = false;
+  //     this.attackSound.pause;
+  //   }
+  // }
 
   takeDamage() {
     if (this.takingDamage) {
@@ -192,9 +192,9 @@ export class Knight {
   }
 
   flickerPortraitRed() {
-    const portraitBox = document.querySelector('.portrait-box');
-    const redBox = document.createElement('div');
-    redBox.classList.add('red-box');
+    const portraitBox = document.querySelector(".portrait-box");
+    const redBox = document.createElement("div");
+    redBox.classList.add("red-box");
     portraitBox.appendChild(redBox);
 
     setTimeout(() => {
@@ -206,7 +206,6 @@ export class Knight {
     setTimeout(() => {
       redBox.remove();
     }, 150);
-
   }
 
   deathAnimation() {
@@ -235,13 +234,25 @@ export class Knight {
   }
 
   changePortrait() {
-    const knightPortrait = document.querySelector('.knight-portrait');
-    knightPortrait.src = "./images/skull.png"
+    const knightPortrait = document.querySelector(".knight-portrait");
+    knightPortrait.src = "./images/skull.png";
   }
 
   attack() {
-    this.playAttackSound();
-    this.endAttackAnimation();
+    if (index.keys.Space && !this.beginAttack) {
+      this.beginAttack = true;
+      this.attacking = true;
+      this.sx = 0;
+      this.sy = 96;
+      this.count = 0;
+    }
+  }
+
+  endAttack() {
+    if (this.sx >= 160) {
+      this.attacking = false;
+      this.beginAttack = false;
+    }
   }
 
   update() {
@@ -249,6 +260,7 @@ export class Knight {
     this.move();
     this.changeDirection();
     this.attack();
+    this.endAttack();
     this.takeDamage();
     this.detectDeath();
     this.deathAnimation();

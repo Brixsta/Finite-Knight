@@ -158,13 +158,6 @@ function handleKeyDown(e) {
   if (index.global.inPlay) {
     let key = e.code;
     keys[key] = true;
-
-    if (key === "Space" && !player.attacking) {
-      player.attacking = true;
-      player.sx = 0;
-      player.sy = 96;
-      player.count = 0;
-    }
   }
 }
 
