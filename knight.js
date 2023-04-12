@@ -114,34 +114,20 @@ export class Knight {
     }
   }
 
-  // playAttackSound() {
-  //   // play sound during each attack animation
-  //   if (
-  //     (this.sx >= 128 && this.attacking) ||
-  //     (this.sx >= 128 && index.keys.Space)
-  //   ) {
-  //     if (this.attackSound.paused) {
-  //       const audio = this.attackSound;
-  //       const sounds = [
-  //         "./audio/sword-1.wav",
-  //         "./audio/sword-2.wav",
-  //         "./audio/sword-3.wav",
-  //       ];
-  //       const randomNum = Math.floor(Math.random() * sounds.length);
-  //       audio.src = sounds[randomNum];
-  //       audio.volume = 0.2;
-  //       audio.play();
-  //     }
-  //   }
-  // }
-
-  // endAttackAnimation() {
-  //   // stop attack animation when sprite sheet reaches end
-  //   if ((this.sx >= 160 && this.attacking) || (this.sx >= 160 && this.moving)) {
-  //     this.attacking = false;
-  //     this.attackSound.pause;
-  //   }
-  // }
+  playAttackSound() {
+    if (this.attacking) {
+      const audio = this.attackSound;
+      const sounds = [
+        "./audio/sword-1.wav",
+        "./audio/sword-2.wav",
+        "./audio/sword-3.wav",
+      ];
+      const randomNum = Math.floor(Math.random() * sounds.length);
+      audio.src = sounds[randomNum];
+      audio.volume = 0.2;
+      audio.play();
+    }
+  }
 
   takeDamage() {
     if (this.takingDamage) {
@@ -250,6 +236,7 @@ export class Knight {
 
   endAttack() {
     if (this.sx >= 160) {
+      this.playAttackSound();
       this.attacking = false;
       this.beginAttack = false;
     }
